@@ -276,7 +276,7 @@
         //[self readSavedOrigin];
     }
     if(!isTraining){
-        [self loadConceptMap:nil];
+      //  [self loadConceptMap:nil];
     }
     [self.view bringSubviewToFront:toolBar];
     
@@ -472,17 +472,11 @@
 //Loads concept map
 - (IBAction)loadConceptMap:(id)sender {
     
-    
-    for(NSString* idneString in correctIndexAry){
-        
-    }
-    
-    
-    
+    [self correctAnswertoConceptArray];
     
     NSString* istest=[[NSUserDefaults standardUserDefaults] stringForKey:@"loadExpertMap"];
     
-    if([istest isEqualToString:@"YES"]){
+    if([istest isEqualToString:@"YES"]){ //in test mode
         
         bookNodeWrapper=[CmapNodeParser loadExpertCmapNode];
         bookLinkWrapper=[CmapLinkParser loadExpertCmapLink];
@@ -506,11 +500,15 @@
     for(CmapNode* cell in bookNodeWrapper.cmapNodes){
         //check if this node should be created////
         
-       
         
-        
-        [self createNode:CGPointMake(cell.point_x, cell.point_y) withName:cell.text page:cell.pageNum url:cell.linkingUrl urlTitle: cell.linkingUrlTitle hasNote: cell.hasNote hasHighlight: cell.hasHighlight hasWebLink: cell.hasWebLink savedNotesString: cell.savedNotesString];
-        
+        for(NSString* nameString in conceptsShowAry){
+            
+            if ([cell.text isEqualToString:nameString]){ //if the name matches something in the conceptsshowary
+                
+                [self createNode:CGPointMake(cell.point_x, cell.point_y) withName:cell.text page:cell.pageNum url:cell.linkingUrl urlTitle: cell.linkingUrlTitle hasNote: cell.hasNote hasHighlight: cell.hasHighlight hasWebLink: cell.hasWebLink savedNotesString: cell.savedNotesString];
+                
+            }
+        }
         
     }
     for(CmapLink* link in bookLinkWrapper.cmapLinks){
@@ -858,11 +856,55 @@
 }
 
 
+//This function takes indexes in the correctindexary and maps it to nodes in the conceptsshowary
+-(void)correctAnswertoConceptArray{
+    for (id obj in correctIndexAry) { //correctIndexAry is populated by the index of correctly answered questions from the pretest
+        NSString* objString=(NSString*)obj;
+        int objInt=[objString intValue];
+        //Populate ConceptShowsAry
+        [self addConceptByIndex: objInt];
+        //  [self deleteConceptByIndex:objInt];
+    }
+    
+    //save the number of concepts in the expert map to log file
+    int conceptNum=(int)conceptNodeArray.count;
+    NSString* conceptNumString= [[NSString alloc]initWithFormat:@"%d",conceptNum];
+    LogData* countLog= [[LogData alloc]initWithName:userName SessionID:@"session_id" action:@"Number of Concepts in Expert Map" selection:@"expert concept map" input:conceptNumString pageNum:pageNum];
+    [bookLogDataWrapper addLogs:countLog];
+    [LogDataParser saveLogData:bookLogDataWrapper];
+    hasLogedModifyMap=YES;
+    
+    
+    
+    //save expert map to file
+    UIGraphicsBeginImageContextWithOptions(conceptMapView.bounds.size, NO, 0.0);
+    [conceptMapView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    [[UIColor whiteColor] set];
+    
+    UIGraphicsEndImageContext();
+    
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ExpertScreenShot.png"];
+    
+    // Save image.
+    [UIImagePNGRepresentation(img) writeToFile:filePath atomically:YES];
+    
+    
+
+
+    
+}
+/*
 //HELLO
 -(void)modifyExpertMap{
     int sectionsToShow = arc4random_uniform(10);
     //sectionsToShow=0;
     // if(sectionsToShow!=9&&sectionsToShow!=10){
+    //delAry contains random question indexes
     NSMutableArray* delAry=[[NSMutableArray alloc]init];
     for (int i=0; i<sectionsToShow;i++){
         int ran=0;
@@ -873,16 +915,19 @@
         } while ( [delAry containsObject: ranString]);
         [delAry addObject:ranString];
     }
-    
+    //Populates concepsshowarray based on random indexes
     for (id obj in delAry) {
         NSString* objString=(NSString*)obj;
         int objInt=[objString intValue];
+        //adds node cells
         [self addConceptByIndex: objInt];
         //  [self deleteConceptByIndex:objInt];
     }
     
     int t=[conceptsShowAry count];
     NSMutableArray* delnamesAry=[[NSMutableArray alloc]init];
+    
+    //Adds what nodes we don't want to the delNamesAry array
     for (NodeCell *node in conceptNodeArray){
         if (![conceptsShowAry containsObject: node.text.text]) // YES
         {
@@ -890,7 +935,7 @@
             [delnamesAry addObject:del];
         }
     }
-    
+    //delete everything in delNameAry
     for(NSString* name in delnamesAry){
         [self deleteConcept:name];
     }
@@ -926,8 +971,9 @@
     [UIImagePNGRepresentation(img) writeToFile:filePath atomically:YES];
     
     
-}
+}*/
 
+//Populates ConceptsShowAry, which contains which cells will be shown in the template based on the pretest
 -(void)addConceptByIndex: (int)Index{
     
     switch ( Index )

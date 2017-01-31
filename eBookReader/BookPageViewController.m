@@ -79,7 +79,7 @@
     bulbImageView.layer.shadowColor = [UIColor blackColor].CGColor;
     bulbImageView.layer.shadowOffset = CGSizeMake(2, 2);
     [self.view bringSubviewToFront:cmapView.view];
-    [cmapView loadConceptMap:nil];
+    //[cmapView loadConceptMap:nil];
 
 }
 
@@ -87,7 +87,7 @@
 {
     if(ShowingQA){
         [self.view bringSubviewToFront:cmapView.view];
-        [cmapView loadConceptMap:nil];
+       // [cmapView loadConceptMap:nil];
         
         ShowingQA=false;
     }else{
@@ -102,7 +102,7 @@
 {
     if(ShowingQA){
         [self.view bringSubviewToFront:cmapView.view];
-        [cmapView loadConceptMap:nil];
+       // [cmapView loadConceptMap:nil];
         ShowingQA=false;
     }else{
         [self.view bringSubviewToFront:QA.view];

@@ -29,6 +29,7 @@
 @synthesize testType;
 @synthesize questionNum;
 @synthesize randomQuestionArray;
+//the questions
 @synthesize question1;
 @synthesize question2;
 @synthesize question3;
@@ -36,13 +37,14 @@
 @synthesize question5;
 @synthesize question6;
 
-
+//question's answers
 @synthesize question1Answer;
 @synthesize question2Answer;
 @synthesize question3Answer;
 @synthesize question4Answer;
 @synthesize question5Answer;
 @synthesize question6Answer;
+
 
 
 @synthesize correctIndexAry;
@@ -107,7 +109,7 @@
       [quizButton setTitle:@"Start" forState:UIControlStateNormal];
     }
     //totalCountdownInterval=90;//identifies the total time of the quiz.
-    totalCountdownInterval=5;//identifies the total time of the quiz.
+    totalCountdownInterval=20;//identifies the total time of the quiz.
 
    // NSString *speedLabel = [[NSString alloc] initWithFormat:@"Time remaining %02d : %02d ", (int)totalCountdownInterval/60, (int)totalCountdownInterval%60];
    // self.navigationController.navigationBar.topItem.title=speedLabel;
@@ -117,9 +119,10 @@
     for(int i=0; i<50;i++)//initialize the concept Id list.
         conceptIDList[i]=1;
     
+    //picks random questions from the array of questions
     int r1 = arc4random_uniform(10);
     int r2,r3,r4,r5,r6;
-    
+    //makes sure all numbers are different
     do{r2=arc4random_uniform(10);}
     while(r2==r1);
     
@@ -136,7 +139,7 @@
     do{r6=arc4random_uniform(10);}
     while(r6==r1||r6==r2||r6==r3||r6==r4||r6==r5);
     
-    
+    //This sets the question answers
     question1Answer=[self getQuestionAnswerById:r1];
     question2Answer=[self getQuestionAnswerById:r2];
     question3Answer=[self getQuestionAnswerById:r3];
@@ -169,7 +172,7 @@
     [LogDataParser saveLogData:bookLogDataWrapper];
 }
 
-
+//Gets question answer per index, index is decided per r#, see view did load
 -(NSString*)getQuestionAnswerById: (int) index{
     switch ( index )
     {
@@ -217,7 +220,7 @@
     if (remainTime <= 0.0) {
         isFinished=YES;
         [_timer invalidate];
-        if(0==testType){
+        if(0==testType){//pre test
             [self.navigationController popToViewController:self animated:false];
             NSString *speedLabel = [[NSString alloc] initWithFormat:@"Finished"];
             self.navigationController.navigationBar.topItem.title=speedLabel;
@@ -231,7 +234,7 @@
             LogData* newlog2= [[LogData alloc]initWithName:userName SessionID:@"session_id" action:@"Getting answer" selection:@"quiz view" input:inputString2 pageNum:0];
             [bookLogDataWrapper addLogs:newlog2];
             [LogDataParser saveLogData:bookLogDataWrapper];
-    
+            //Get Total Score
             int total=[self getTotalScore:question1 Q2:question2 Q3:question3 Q4:question4 Q5:question5 Q6:question6 A1:question1Answer A2:question2Answer A3:question3Answer A4:question4Answer A5:question5Answer A6:question6Answer];
             NSString* scoreSring=[[NSString alloc] initWithFormat:@"Pretest Score: %d", total];
             LogData* scoreLog= [[LogData alloc]initWithName:userName SessionID:@"session_id" action:@"Getting answer" selection:@"quiz view" input:scoreSring pageNum:0];
@@ -254,7 +257,7 @@
                 wrongtestSmary=[wrongtestSmary stringByAppendingString:[num stringValue]];
                 wrongtestSmary=[wrongtestSmary stringByAppendingString:@", "];
             }
-            
+            //Start Building the concept map template
             parentBookPageViewController.cmapView.correctIndexAry=correctIndexAry;
             [parentBookPageViewController.cmapView loadConceptMap:nil];
             
@@ -323,7 +326,7 @@
 }
 
 
-
+//Gets total score of the pretest and poplateds correct and wrong answer arrays
 -(int)getTotalScore: (NSString*)q1 Q2:(NSString*)q2 Q3:(NSString*)q3 Q4:(NSString*)q4 Q5:(NSString*)q5 Q6:(NSString*)q6   A1:(NSString*)a1 A2:(NSString*)a2 A3:(NSString*)a3 A4:(NSString*)a4 A5:(NSString*)a5 A6:(NSString*)a6{
     int total=0;
     if([q1 isEqualToString:a1]) {
@@ -364,6 +367,7 @@
         [wrongIndexAry addObject:[randomQuestionArray objectAtIndex:5]];
     }
     
+    //We can use the correctindexary and wrongindexary to determine what nodes to add to our template
     
     return total;
 }
@@ -487,7 +491,7 @@
 
 - (void)nextQuestion
 {
-    if (_questionIndex >= questionNum)
+    if (_questionIndex >= questionNum)//current question number is greater than number of questions 
     {
         [_session stop];
         isFinished=true;

@@ -61,7 +61,6 @@
 		5616F844178D46BC009E0FC6 /* HighlightContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F843178D46BC009E0FC6 /* HighlightContent.m */; };
 		5619B28517963287001E5BA0 /* LogFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5619B28417963287001E5BA0 /* LogFileController.m */; };
 		561BCBFA1B09CD8900F553D4 /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 561BCBF81B09CD8900F553D4 /* QAViewController.m */; };
-		561BCBFB1B09CD8900F553D4 /* QAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 561BCBF91B09CD8900F553D4 /* QAViewController.xib */; };
 		561C0D5618C52ABD00B223D3 /* deleteConcept.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C0D5518C52ABD00B223D3 /* deleteConcept.png */; };
 		561C0D5818C52B7900B223D3 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C0D5718C52B7900B223D3 /* edit.png */; };
 		561CDA401C7398E700FD23B7 /* doc.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 561CDA3F1C7398E700FD23B7 /* doc.pdf */; };
@@ -311,6 +310,7 @@
 		68D1BF071D9AF9C600BD09D1 /* Safarai_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 68D1BF051D9AF9C600BD09D1 /* Safarai_White.png */; };
 		68D1BF091DB6B68B00BD09D1 /* webbrowser.png in Resources */ = {isa = PBXBuildFile; fileRef = 68D1BF081DB6B68B00BD09D1 /* webbrowser.png */; };
 		68D1BF0B1DBFFF3100BD09D1 /* aa.epub in Resources */ = {isa = PBXBuildFile; fileRef = 68D1BF0A1DBFFE3E00BD09D1 /* aa.epub */; };
+		68ED000B1E37FDFF00A978B2 /* QAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ED000A1E37FDFF00A978B2 /* QAViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,7 +401,6 @@
 		5619B28417963287001E5BA0 /* LogFileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogFileController.m; sourceTree = "<group>"; };
 		561BCBF71B09CD8900F553D4 /* QAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
 		561BCBF81B09CD8900F553D4 /* QAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
-		561BCBF91B09CD8900F553D4 /* QAViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAViewController.xib; sourceTree = "<group>"; };
 		561C0D5518C52ABD00B223D3 /* deleteConcept.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteConcept.png; sourceTree = "<group>"; };
 		561C0D5718C52B7900B223D3 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		561CDA3F1C7398E700FD23B7 /* doc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = doc.pdf; sourceTree = "<group>"; };
@@ -754,6 +753,7 @@
 		68D1BF051D9AF9C600BD09D1 /* Safarai_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Safarai_White.png; sourceTree = "<group>"; };
 		68D1BF081DB6B68B00BD09D1 /* webbrowser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webbrowser.png; sourceTree = "<group>"; };
 		68D1BF0A1DBFFE3E00BD09D1 /* aa.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = aa.epub; sourceTree = "<group>"; };
+		68ED000A1E37FDFF00A978B2 /* QAViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1118,7 +1118,7 @@
 			children = (
 				561BCBF71B09CD8900F553D4 /* QAViewController.h */,
 				561BCBF81B09CD8900F553D4 /* QAViewController.m */,
-				561BCBF91B09CD8900F553D4 /* QAViewController.xib */,
+				68ED000A1E37FDFF00A978B2 /* QAViewController.xib */,
 				56F935E51B0DC3A500138A1A /* QAFinderViewController.h */,
 				56F935E61B0DC3A500138A1A /* QAFinderViewController.m */,
 				56F935E71B0DC3A500138A1A /* QAFinderViewController.xib */,
@@ -1830,7 +1830,6 @@
 				56BD58A01C7E20B600283AC3 /* FontAwesome.ttf in Resources */,
 				566D60181AC5D23500492921 /* TrueFalseViewController.xib in Resources */,
 				561D1AFC1C86894100D3AF47 /* CmapIcon.png in Resources */,
-				561BCBFB1B09CD8900F553D4 /* QAViewController.xib in Resources */,
 				3166DB5E16B0A5300089C0F2 /* InfoPlist.strings in Resources */,
 				567924C51B12E7BB007B5038 /* finder_stop.png in Resources */,
 				3166DB6616B0A5300089C0F2 /* Default.png in Resources */,
@@ -1921,6 +1920,7 @@
 				56F935E91B0DC3A500138A1A /* QAFinderViewController.xib in Resources */,
 				566F09BF1721C15800412952 /* speak.png in Resources */,
 				56B0B9A018C529110016783E /* addConcpetNode.png in Resources */,
+				68ED000B1E37FDFF00A978B2 /* QAViewController.xib in Resources */,
 				68D1BF061D9AF9C600BD09D1 /* Node_Small.png in Resources */,
 				566F09C11721C17400412952 /* question.png in Resources */,
 				566F09CE17220A2700412952 /* NoteView.xib in Resources */,

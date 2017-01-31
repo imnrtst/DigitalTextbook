@@ -29,6 +29,7 @@
 @property int questionNum;
 @property NSMutableArray* conceptIdArray;
 @property NSMutableArray* randomQuestionArray;
+//THE QUESTIONS
 @property NSString* question1;
 @property NSString* question2;
 @property NSString* question3;
@@ -36,6 +37,7 @@
 @property NSString* question5;
 @property NSString* question6;
 
+//ANSWERS TO THE QUESTIONS
 @property NSString* question1Answer;
 @property NSString* question2Answer;
 @property NSString* question3Answer;
@@ -43,7 +45,9 @@
 @property NSString* question5Answer;
 @property NSString* question6Answer;
 
+//CORRECT ANSWERS
 @property NSMutableArray* correctIndexAry;
+//INCORRECT ANSWERS
 @property NSMutableArray* wrongIndexAry;
 
 @property (nonatomic, retain) LogDataWrapper* bookLogDataWrapper;
