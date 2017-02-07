@@ -144,7 +144,8 @@
 @property BOOL hasLogedModifyMap;
 
 @property (strong, nonatomic) UIImage* savedExpertImg;
-@property (nonatomic, strong) NSMutableArray* conceptsShowAry;
+@property (nonatomic, strong) NSMutableArray* conceptsShowAry; //The correct answers to show from pretest
+@property (nonatomic, strong) NSMutableArray* pretestQuestionsAry; //The questions from the pretest
 @property (nonatomic, strong)TrainingViewController* parentTrainingCtr;
 @property NSMutableArray* correctIndexAry;
 

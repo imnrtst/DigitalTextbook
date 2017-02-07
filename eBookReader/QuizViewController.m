@@ -258,7 +258,8 @@
                 wrongtestSmary=[wrongtestSmary stringByAppendingString:@", "];
             }
             //Start Building the concept map template
-            parentBookPageViewController.cmapView.correctIndexAry=correctIndexAry;
+            parentBookPageViewController.cmapView.pretestQuestionsAry = randomQuestionArray; //all the questions
+            parentBookPageViewController.cmapView.correctIndexAry=correctIndexAry; //just the correct answers
             [parentBookPageViewController.cmapView loadConceptMap:nil];
             
             
@@ -326,7 +327,7 @@
 }
 
 
-//Gets total score of the pretest and poplateds correct and wrong answer arrays
+//Gets total score of the pretest and populates correct and wrong answer arrays
 -(int)getTotalScore: (NSString*)q1 Q2:(NSString*)q2 Q3:(NSString*)q3 Q4:(NSString*)q4 Q5:(NSString*)q5 Q6:(NSString*)q6   A1:(NSString*)a1 A2:(NSString*)a2 A3:(NSString*)a3 A4:(NSString*)a4 A5:(NSString*)a5 A6:(NSString*)a6{
     int total=0;
     if([q1 isEqualToString:a1]) {

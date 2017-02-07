@@ -473,6 +473,13 @@
 - (IBAction)loadConceptMap:(id)sender {
     
     [self correctAnswertoConceptArray];
+    if ([conceptsShowAry count] == 0){ //size is zero, aka user got no answers correctly,
+        [self randomQuestiontoConceptArray:4]; //create random template from the original questions
+    }
+    else if ([conceptsShowAry count] > 4){ //user got more correct than the desired template size
+        [conceptsShowAry removeAllObjects];
+        [self randomQuestiontoConceptArray:5]; //create random template from the original questions
+    }
     
     NSString* istest=[[NSUserDefaults standardUserDefaults] stringForKey:@"loadExpertMap"];
     
@@ -898,6 +905,83 @@
 
     
 }
+
+//This function takes questions from the pretest and randomly maps it to nodes in the conceptsshowary
+-(void)randomQuestiontoConceptArray: (int) size{
+
+    
+    int i = [_pretestQuestionsAry count];
+    //picks random questions from the array of questions
+    int toEnter = 0;
+    int r1 = arc4random_uniform(i);
+    toEnter = [[_pretestQuestionsAry objectAtIndex:r1] intValue]; //converts to int value
+    [self addConceptByIndex:toEnter];
+    int r2, r3, r4, r5, r6;
+    //makes sure all numbers are different
+    do{r2=arc4random_uniform(i);}
+    while(r2==r1);
+    toEnter = [[_pretestQuestionsAry objectAtIndex:r2] intValue]; //converts to int value
+    [self addConceptByIndex:toEnter];
+    
+    if (size >= 3){ // creating a map that only fits to the size in the parameter
+        do{r3=arc4random_uniform(i);}
+        while(r3==r1||r3==r2);
+        toEnter = [[_pretestQuestionsAry objectAtIndex:r3] intValue]; //converts to int value
+        [self addConceptByIndex: toEnter];
+    }
+    if (size >= 4){
+        do{r4=arc4random_uniform(i);}
+        while(r4==r1||r4==r2||r4==r3);
+        toEnter = [[_pretestQuestionsAry objectAtIndex:r4] intValue]; //converts to int value
+        [self addConceptByIndex: toEnter];
+    }
+    if (size >= 5){
+        do{r5=arc4random_uniform(i);}
+        while(r5==r1||r5==r2||r5==r3||r5==r4);
+        toEnter = [[_pretestQuestionsAry objectAtIndex:r5] intValue]; //converts to int value
+        [self addConceptByIndex:toEnter];
+    }
+    if(size >= 6){
+        do{r6=arc4random_uniform(i);}
+        while(r6==r1||r6==r2||r6==r3||r6==r4||r6==r5);
+        toEnter = [[_pretestQuestionsAry objectAtIndex:r6] intValue]; //converts to int value
+        [self addConceptByIndex:toEnter];
+   
+    }
+    
+    //save the number of concepts in the expert map to log file
+    int conceptNum=(int)conceptNodeArray.count;
+    NSString* conceptNumString= [[NSString alloc]initWithFormat:@"%d",conceptNum];
+    LogData* countLog= [[LogData alloc]initWithName:userName SessionID:@"session_id" action:@"Number of Concepts in Expert Map" selection:@"expert concept map" input:conceptNumString pageNum:pageNum];
+    [bookLogDataWrapper addLogs:countLog];
+    [LogDataParser saveLogData:bookLogDataWrapper];
+    hasLogedModifyMap=YES;
+    
+    
+    
+    //save expert map to file
+    UIGraphicsBeginImageContextWithOptions(conceptMapView.bounds.size, NO, 0.0);
+    [conceptMapView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    [[UIColor whiteColor] set];
+    
+    UIGraphicsEndImageContext();
+    
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ExpertScreenShot.png"];
+    
+    // Save image.
+    [UIImagePNGRepresentation(img) writeToFile:filePath atomically:YES];
+    
+    
+    
+    
+    
+}
+
 /*
 //HELLO
 -(void)modifyExpertMap{
