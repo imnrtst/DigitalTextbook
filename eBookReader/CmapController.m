@@ -944,7 +944,7 @@
     if(size >= 6){
         do{r6=arc4random_uniform(i);}
         while(r6==r1||r6==r2||r6==r3||r6==r4||r6==r5);
-        toEnter = [[_pretestQuestionsAry objectAtIndex:r6] intValue]; //converts to int value
+        toEnter = [[_pretestQuestionsAry objectAtIndex:r5] intValue]; //converts to int value
         [self addConceptByIndex:toEnter];
    
     }
@@ -1686,6 +1686,7 @@
     [LogDataParser saveLogData:bookLogDataWrapper];
     if (showingPV != nil){ // popoverview for taking notes exists
         noteTakingNode.appendedNoteString = showingPV.noteText.text; //saves text from popover view
+        [noteTakingNode updateThumbIcons];
         [showingPV dismiss]; //gets rid of popover view
     }
     [self autoSaveMap];

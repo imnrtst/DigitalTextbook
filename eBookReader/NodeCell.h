@@ -64,9 +64,9 @@
 @property (nonatomic, retain) HighLightWrapper *bookHighLight;//the highlight wrapper pased from the bookviewcontroller to control the highlight info in the book
 @property (nonatomic, retain) ThumbNailIconWrapper *bookthumbNailIcon;
 @property (strong, nonatomic) NSString *bookTitle;
-@property BOOL hasNote;
-@property BOOL hasHighlight;
-@property BOOL hasWeblink;
+@property BOOL hasNote;         //node was created with '+' button
+@property BOOL hasHighlight;    //node was created from book
+@property BOOL hasWeblink;      //node was created from online
 @property (nonatomic, retain) LogDataWrapper* bookLogData;
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) RelationTextView*linkTextview2;
@@ -88,5 +88,6 @@
 -(void)updateLink;
 -(void)enterIntoUrlArray;
 -(void)setLinkingUrl;
+-(void)updateThumbIcons;
 
 @end

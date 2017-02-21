@@ -89,7 +89,9 @@
         [subview removeFromSuperview];
         }
     }
-    
+    if (appendedNoteString.length != 0){ //node has notes taken on it
+        [self noteTakingThumb];
+    }
     
     if(hasNote){ // created from "+" (manually)
         [self addNoteThumb];
@@ -1120,6 +1122,7 @@
     pv.noteText.font = [UIFont fontWithName:@"Helvetica" size:15];
     pv.noteText.text = appendedNoteString; //saves note text to string
     parentCmapController.showingPV=pv;
+    
     /*CGFloat offSet=(pv.noteText.frame.size.height+ pv.noteText.frame.origin.y-parentCmapController.conceptMapView.contentOffset.y)-(768-352)+88;*/
 
 
@@ -1215,11 +1218,19 @@
          [parentCmapController.conceptLinkArray removeAllObjects];
      }*/
 }
+
+//icon for when node has notes taken on it--------------------------------------------------------------
+-(void)noteTakingThumb{
+    UIImageView *thumb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"note_square.png"]];
+    [thumb setFrame:CGRectMake(self.view.frame.size.width-7, -10, 14, 14)];
+    [self.view addSubview:thumb];
+    
+}
 //for nodes from the "+" button-------------------------------------------------------------------------
 -(void)addNoteThumb{
-    UIImageView *thumb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"note_square.png"]];
+   /* UIImageView *thumb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"note_square.png"]];
     [thumb setFrame:CGRectMake(self.view.frame.size.width-7, self.view.frame.size.height, 14, 14)];
-    [self.view addSubview:thumb];
+    [self.view addSubview:thumb];*/
 }
 //for nodes from the web browser-------------------------------------------------------------------------
 -(void)addWebThumb{
