@@ -33,6 +33,17 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="qET-5y-0pG"/>
+                        <barButtonItem style="plain" id="bia-DA-p0a">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PzD-9E-v8k">
+                                <rect key="frame" x="103" y="7" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Notes"/>
+                                <connections>
+                                    <action selector="displayNoteTable:" destination="-1" eventType="touchUpInside" id="cpf-AK-Xy4"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="WwJ-GG-o7z"/>
                         <barButtonItem systemItem="trash" id="vK2-ej-jMd">
                             <connections>

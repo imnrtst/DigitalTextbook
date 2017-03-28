@@ -109,7 +109,7 @@
       [quizButton setTitle:@"Start" forState:UIControlStateNormal];
     }
     //totalCountdownInterval=90;//identifies the total time of the quiz.
-    totalCountdownInterval=20;//identifies the total time of the quiz.
+    totalCountdownInterval=10;//identifies the total time of the quiz.
 
    // NSString *speedLabel = [[NSString alloc] initWithFormat:@"Time remaining %02d : %02d ", (int)totalCountdownInterval/60, (int)totalCountdownInterval%60];
    // self.navigationController.navigationBar.topItem.title=speedLabel;
@@ -146,7 +146,6 @@
     question4Answer=[self getQuestionAnswerById:r4];
     question5Answer=[self getQuestionAnswerById:r5];
     question6Answer=[self getQuestionAnswerById:r6];
-    
     
     NSNumber* wrapR1 = [NSNumber numberWithInt:r1];
     NSNumber* wrapR2 = [NSNumber numberWithInt:r2];

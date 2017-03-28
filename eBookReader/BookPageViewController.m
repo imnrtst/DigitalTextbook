@@ -47,6 +47,7 @@
 @synthesize cmapFocusQuestionLable;
 @synthesize hintImg;
 @synthesize myWebView;
+@synthesize myNoteTable;
 @synthesize subViewType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -159,6 +160,7 @@
     [self createMenuItems];
     [self createCmapView];
     [self createWebView];
+    [self createNoteTableView];
     
     [self createQA];
     [self addSwitchView];
@@ -506,6 +508,20 @@
     [QA.view setUserInteractionEnabled:YES];
     QA.view.center=CGPointMake(768, 384);
     [QA.view setHidden:YES];
+}
+
+
+//Creates Note Table view
+-(void) createNoteTableView{
+    myNoteTable=[[AllNotesTableViewController alloc] initWithNibName:@"AllNotesTableViewController" bundle:nil];
+    myNoteTable.parentBookPageViewCtr=self;
+   [self addChildViewController:myNoteTable];
+   [self.view addSubview:myNoteTable.view];
+    [myNoteTable.view setUserInteractionEnabled:YES];
+   myNoteTable.view.center=CGPointMake(256, 384);
+   [myNoteTable.view setHidden:YES];
+   myNoteTable.view.clipsToBounds = YES;
+
 }
 
 //creates our web browser view

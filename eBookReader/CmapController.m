@@ -102,6 +102,7 @@
 @synthesize showingPV;
 @synthesize noteTakingNode;
 @synthesize correctIndexAry;
+
 - (id) init {
     if (self = [super init]) {
         nodeCount=1;
@@ -146,6 +147,7 @@
     conceptsShowAry=[[NSMutableArray alloc] init];
     lastStepConceptNodeArray=[[NSMutableArray alloc] init];
     lastStepConceptLinkArray=[[NSMutableArray alloc] init];
+   
     
   //  myWebView=[[WebBrowserViewController alloc]initWithNibName:@"WebBrowserViewController" bundle:nil];
     
@@ -1687,6 +1689,7 @@
     if (showingPV != nil){ // popoverview for taking notes exists
         noteTakingNode.appendedNoteString = showingPV.noteText.text; //saves text from popover view
         [noteTakingNode updateThumbIcons];
+        [self.parentBookPageViewController.myNoteTable getAllNotes];
         [showingPV dismiss]; //gets rid of popover view
     }
     [self autoSaveMap];
@@ -2585,6 +2588,24 @@
 -(void)dismissLinkHint{
     //[focusQuestionLable setHidden:YES];
     [parentBookPageViewController hideLinkingWarning];
+}
+
+//"Notes" Button on toolbar action to display note table
+-(IBAction)displayNoteTable:(id)sender{
+    if (self.parentBookPageViewController.myNoteTable.view.isHidden == YES){ //note table view is hidden
+        //Show view
+        [self.parentBookPageViewController.myNoteTable.view setHidden: NO];
+        //self.parentBookPageViewController.subViewType=1;
+        [self.parentBookPageViewController.myNoteTable getAllNotes];
+        [self.parentBookPageViewController.view bringSubviewToFront:parentBookPageViewController.myNoteTable.view];
+    }
+    else{ //note table view is showing
+        //Hide View
+        [self.parentBookPageViewController.myNoteTable.view setHidden: YES];
+        //self.parentBookPageViewController.subViewType=0;
+        [self.parentBookPageViewController.view sendSubviewToBack:parentBookPageViewController.myNoteTable.view];
+    }
+
 }
 
 //"Web" button  on toolbar action to display web view

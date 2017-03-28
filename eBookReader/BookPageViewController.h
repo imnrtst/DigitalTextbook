@@ -15,6 +15,7 @@
 #import "DTAlertView.h"
 #import "UIMenuItem+CXAImageSupport.h"
 #import "WebBrowserViewController.h"
+#import "AllNotesTableViewController.h"
 
 @class LogDataWrapper;
 @interface BookPageViewController : UIViewController <DBRestClientDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,UIWebViewDelegate>
@@ -24,6 +25,7 @@
 @property (strong, nonatomic)  QAViewController *QA;
 
 @property (strong, nonatomic)  WebBrowserViewController *myWebView;
+@property (strong, nonatomic)  AllNotesTableViewController *myNoteTable;
 @property (nonatomic, strong) DBRestClient *restClient;
 @property (nonatomic, retain)LogDataWrapper * logWrapper;
 @property (strong,nonatomic) UIImageView *bulbImageView;

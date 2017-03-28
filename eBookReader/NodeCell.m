@@ -94,13 +94,13 @@
     }
     
     if(hasNote){ // created from "+" (manually)
-        [self addNoteThumb];
+        //[self addNoteThumb];
     }
     if(hasWeblink){ // created from web browser
-        [self addWebThumb];
+        //[self addWebThumb];
     }
     if(hasHighlight){ // created from book
-        [self addHighlightThumb];
+        //[self addHighlightThumb];
     }
 
 }
@@ -1228,9 +1228,9 @@
 }
 //for nodes from the "+" button-------------------------------------------------------------------------
 -(void)addNoteThumb{
-   /* UIImageView *thumb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"note_square.png"]];
+    UIImageView *thumb = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"usericon.png"]];
     [thumb setFrame:CGRectMake(self.view.frame.size.width-7, self.view.frame.size.height, 14, 14)];
-    [self.view addSubview:thumb];*/
+    [self.view addSubview:thumb];
 }
 //for nodes from the web browser-------------------------------------------------------------------------
 -(void)addWebThumb{
